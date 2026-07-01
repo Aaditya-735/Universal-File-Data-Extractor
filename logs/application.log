@@ -1,0 +1,11 @@
+2026-07-01 19:20:55 | INFO | Application Started Successfully
+2026-07-01 19:21:26 | INFO | Application Started Successfully
+2026-07-01 19:45:11 | INFO | resume.pdf -> PDF
+2026-07-01 19:45:11 | INFO | invoice.xlsx -> EXCEL
+2026-07-01 19:45:11 | INFO | students.csv -> CSV
+2026-07-01 19:45:11 | INFO | photo.jpg -> IMAGE
+2026-07-01 19:45:11 | INFO | notes.txt -> TEXT
+2026-07-01 19:45:11 | INFO | config.json -> JSON
+2026-07-01 19:52:55 | INFO | Detected File Type : PDF
+2026-07-01 19:59:17 | INFO | Detected File Type : CSV
+2026-07-01 20:00:35 | INFO | Detected File Type : CSV
