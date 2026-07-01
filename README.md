@@ -1,4 +1,4 @@
-### Universal File Data Extractor
+# Universal File Data Extractor
 
 A Python application that extracts structured information from multiple file formats.
 
