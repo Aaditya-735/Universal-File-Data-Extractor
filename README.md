@@ -45,8 +45,8 @@ The application supports both a **Command Line Interface (CLI)** and a **Streaml
 
 ### Extraction Result
 
-![Extraction](assets/extraction_result.png)
-
+![Extraction_1](assets/extraction_1.png)
+![Extraction_2](assets/extraction_2.png)
 ---
 
 ### JSON Output
