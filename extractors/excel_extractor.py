@@ -7,11 +7,11 @@ from models import ExtractionResult, Metadata
 from utils.statistics import StatisticsGenerator
 
 
-class CSVExtractor(BaseExtractor):
-    
+class ExcelExtractor(BaseExtractor):
+   
     def extract(self, file_path: str) -> ExtractionResult:
         
-        dataframe = pd.read_csv(file_path)
+        dataframe = pd.read_excel(file_path)
 
         text = dataframe.to_string(index=False)
 
@@ -23,7 +23,7 @@ class CSVExtractor(BaseExtractor):
 
         return ExtractionResult(
             file_name=file_path,
-            file_type="CSV",
+            file_type="EXCEL",
             text=text,
             metadata=metadata,
             statistics=statistics,

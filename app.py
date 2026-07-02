@@ -1,25 +1,97 @@
-from core.app_logger import logger
 from core.detector import FileDetector
 from core.router import FileRouter
+from core.app_logger import setup_logger
 
-from extractors.pdf_extractor import extract as pdf_extract
-from extractors.csv_extractor import extract as csv_extract
+from extractors.pdf_extractor import PDFExtractor
+from extractors.docx_extractor import DOCXExtractor
+from extractors.csv_extractor import CSVExtractor
+from extractors.excel_extractor import ExcelExtractor
+from utils.exporter import Exporter
 
-print("=" * 50)
-print(" Universal File Data Extractor ")
-print("=" * 50)
 
-router = FileRouter()
+logger = setup_logger()
 
-router.register_route("PDF", pdf_extract)
-router.register_route("CSV", csv_extract)
 
-filename = "students.csv"
+def display_result(result):
+    
+    print("\n" + "=" * 70)
+    print("UNIVERSAL FILE DATA EXTRACTOR")
+    print("=" * 70)
 
-file_type = FileDetector.detect_file_type(filename)
+    print(f"File Name      : {result.file_name}")
+    print(f"File Type      : {result.file_type}")
 
-logger.info(f"Detected File Type : {file_type}")
+    print("\nMETADATA")
+    print("-" * 70)
+    print(f"Author         : {result.metadata.author}")
+    print(f"Title          : {result.metadata.title}")
+    print(f"Pages          : {result.metadata.page_count}")
+    print(f"File Size      : {result.metadata.file_size} bytes")
 
-extractor = router.get_extractor(file_type)
+    print("\nSTATISTICS")
+    print("-" * 70)
+    print(f"Words          : {result.statistics.word_count}")
+    print(f"Characters     : {result.statistics.character_count}")
+    print(f"Lines          : {result.statistics.line_count}")
+    print(f"Paragraphs     : {result.statistics.paragraph_count}")
+    print(f"Reading Time   : {result.statistics.reading_time_minutes} min")
 
-extractor(filename)
+    print("\nEXTRACTED CONTENT")
+    print("-" * 70)
+
+    preview = result.text[:1000]
+
+    print(preview)
+
+    if len(result.text) > 1000:
+        print("\n...Output Truncated...")
+
+
+def main():
+
+    router = FileRouter()
+
+    router.register_route("PDF", PDFExtractor().extract)
+    router.register_route("DOCX", DOCXExtractor().extract)
+    router.register_route("CSV", CSVExtractor().extract)
+    router.register_route("EXCEL", ExcelExtractor().extract)
+
+    print("=" * 70)
+    print("Universal File Data Extractor")
+    print("=" * 70)
+
+    file_path = input("\nEnter file path : ").strip()
+
+    file_type = FileDetector.detect_file_type(file_path)
+
+    logger.info(f"Detected File Type : {file_type}")
+
+    extractor = router.get_extractor(file_type)
+
+    if extractor is None:
+        print("\nUnsupported File Type")
+        return
+
+    result = extractor(file_path)
+
+    display_result(result)
+
+    Exporter.export_json(
+        result,
+        "outputs/result.json"
+    )
+
+    Exporter.export_text(
+        result,
+        "outputs/result.txt"
+    )
+
+    print("\nResults exported successfully.")
+
+    print("JSON :", "outputs/result.json")
+
+    print("TEXT :", "outputs/result.txt")
+
+
+if __name__ == "__main__":
+    main()

@@ -11,11 +11,17 @@ __pycache__/
 # Environment Variables
 .env
 
+# Logs
+logs/*.log
+
 # Outputs
 outputs/
 
 # Uploads
 uploads/
+
+# Streamlit Cache
+.streamlit/
 
 # OS Files
 .DS_Store
