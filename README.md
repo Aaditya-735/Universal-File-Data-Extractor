@@ -43,11 +43,11 @@ The application supports both a **Command Line Interface (CLI)** and a **Streaml
 
 ---
 
-### Extraction Result 1
+### Extraction Result 
 
 ![Extraction_1](assets/extraction_1.png)
 ---
-### Extraction Result 2
+### Extraction Result 
 
 ![Extraction_2](assets/extraction_2.png)
 ---
