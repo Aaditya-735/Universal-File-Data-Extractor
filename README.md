@@ -43,9 +43,12 @@ The application supports both a **Command Line Interface (CLI)** and a **Streaml
 
 ---
 
-### Extraction Result
+### Extraction Result 1
 
 ![Extraction_1](assets/extraction_1.png)
+---
+### Extraction Result 2
+
 ![Extraction_2](assets/extraction_2.png)
 ---
 
@@ -132,7 +135,7 @@ Universal-File-Data-Extractor/
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/Aaditya-735/Universal-File-Data-Extractor.git>
 ```
 
 ### Move into Project
@@ -226,7 +229,7 @@ Future versions may include:
 
 **Aaditya Gupta**
 
-B.Tech Computer Science Engineering
+B.Tech Artificial Intelligence & Data Science
 
 Python Developer | AI Enthusiast | Machine Learning Learner
 
