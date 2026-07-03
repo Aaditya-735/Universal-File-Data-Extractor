@@ -9,6 +9,9 @@ from extractors.pdf_extractor import PDFExtractor
 from extractors.docx_extractor import DOCXExtractor
 from extractors.csv_extractor import CSVExtractor
 from extractors.excel_extractor import ExcelExtractor
+from extractors.txt_extractor import TXTExtractor
+from extractors.image_extractor import ImageExtractor
+from extractors.audio_extractor import AudioExtractor
 
 from utils.exporter import Exporter
 
@@ -24,7 +27,7 @@ st.set_page_config(
 )
 
 st.title("📄 Universal File Data Extractor")
-st.write("Extract information from PDF, DOCX, CSV and Excel files.")
+st.write("Extract information from TXT, PDF, DOCX, CSV, EXCEL, IMAGE and AUDIO files.")
 
 # -----------------------------
 # Router
@@ -36,6 +39,9 @@ router.register_route("PDF", PDFExtractor().extract)
 router.register_route("DOCX", DOCXExtractor().extract)
 router.register_route("CSV", CSVExtractor().extract)
 router.register_route("EXCEL", ExcelExtractor().extract)
+router.register_route("TXT",TXTExtractor().extract)
+router.register_route("IMAGE",ImageExtractor().extract)
+router.register_route("AUDIO", AudioExtractor().extract)
 
 # -----------------------------
 # Upload
@@ -43,7 +49,7 @@ router.register_route("EXCEL", ExcelExtractor().extract)
 
 uploaded_file = st.file_uploader(
     "Choose a file",
-    type=["pdf", "docx", "csv", "xlsx"]
+    type=["pdf", "docx", "csv", "xlsx", "txt", "png", "jpg", "jpeg", "mp3", "m4a", "aac", "wav", "flac" ]
 )
 
 if uploaded_file:
@@ -100,10 +106,8 @@ if uploaded_file:
 
         st.header("Metadata")
 
-        st.write(f"**Author:** {result.metadata.author}")
-        st.write(f"**Title:** {result.metadata.title}")
-        st.write(f"**Pages:** {result.metadata.page_count}")
-        st.write(f"**File Size:** {result.metadata.file_size} bytes")
+        for key, value in result.metadata.items():
+            st.write(f"**{key}:** {value}")
 
         # ------------------------
         # Statistics

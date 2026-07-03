@@ -6,6 +6,9 @@ from extractors.pdf_extractor import PDFExtractor
 from extractors.docx_extractor import DOCXExtractor
 from extractors.csv_extractor import CSVExtractor
 from extractors.excel_extractor import ExcelExtractor
+from extractors.txt_extractor import TXTExtractor
+from extractors.image_extractor import ImageExtractor
+from extractors.audio_extractor import AudioExtractor
 from utils.exporter import Exporter
 
 
@@ -23,10 +26,9 @@ def display_result(result):
 
     print("\nMETADATA")
     print("-" * 70)
-    print(f"Author         : {result.metadata.author}")
-    print(f"Title          : {result.metadata.title}")
-    print(f"Pages          : {result.metadata.page_count}")
-    print(f"File Size      : {result.metadata.file_size} bytes")
+
+    for key, value in result.metadata.items():
+        print(f"{key:<15}: {value}")
 
     print("\nSTATISTICS")
     print("-" * 70)
@@ -55,6 +57,9 @@ def main():
     router.register_route("DOCX", DOCXExtractor().extract)
     router.register_route("CSV", CSVExtractor().extract)
     router.register_route("EXCEL", ExcelExtractor().extract)
+    router.register_route("TXT",TXTExtractor().extract)
+    router.register_route("IMAGE",ImageExtractor().extract)
+    router.register_route("AUDIO",AudioExtractor().extract)
 
     print("=" * 70)
     print("Universal File Data Extractor")

@@ -10,13 +10,16 @@ class FileDetector:
         ".xlsx": "EXCEL",
         ".xls": "EXCEL",
         ".csv": "CSV",
-        ".txt": "TEXT",
-        ".json": "JSON",
-        ".xml": "XML",
+        ".txt": "TXT",
         ".png": "IMAGE",
         ".jpg": "IMAGE",
         ".jpeg": "IMAGE",
-        ".bmp": "IMAGE",
+        ".mp3": "AUDIO",
+        ".wav": "AUDIO",
+        ".m4a": "AUDIO",
+        ".flac": "AUDIO",
+        ".aac":"AUDIO",
+        
     }
 
     @classmethod
