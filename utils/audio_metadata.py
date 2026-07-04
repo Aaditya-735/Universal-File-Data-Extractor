@@ -1,17 +1,17 @@
-import os
 from mutagen import File
+from pathlib import Path
 
 
 class AudioMetadataExtractor:
 
     @staticmethod
-    def extract(file_path: str):
+    def extract(file_path: str) -> dict:
 
         metadata = {}
 
         audio = File(file_path)
 
-        metadata["File Size"] = f"{os.path.getsize(file_path)} bytes"
+        metadata["File Size"] = f"{Path(file_path).stat().st_size} bytes"
 
         if audio is None:
             return metadata

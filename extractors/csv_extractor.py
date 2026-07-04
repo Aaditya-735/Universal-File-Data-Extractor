@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 
 from extractors.base_extractor import BaseExtractor
-from models import ExtractionResult, Metadata
+from models import ExtractionResult
 from utils.statistics import StatisticsGenerator
 
 
@@ -14,10 +14,13 @@ class CSVExtractor(BaseExtractor):
         dataframe = pd.read_csv(file_path)
 
         text = dataframe.to_string(index=False)
+        size = Path(file_path).stat().st_size
 
-        metadata = Metadata(
-            file_size=Path(file_path).stat().st_size
-        )
+        metadata = {
+            "Rows": len(dataframe),
+            "Columns": len(dataframe.columns),
+            "File Size": f"{size} bytes"
+        }
 
         statistics = StatisticsGenerator.generate(text)
 

@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
-
-from models.metadata import Metadata
 from models.statistics import Statistics
+from typing import Dict, Any
 
 
 @dataclass(slots=True)
@@ -13,7 +12,7 @@ class ExtractionResult:
 
     text: str
 
-    metadata: Metadata = field(default_factory=Metadata)
+    metadata: Dict[str, Any] = field(default_factory=dict)
 
     statistics: Statistics = field(default_factory=Statistics)
 

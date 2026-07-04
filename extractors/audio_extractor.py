@@ -21,20 +21,26 @@ class AudioExtractor(BaseExtractor):
 
     def extract(self, file_path: str) -> ExtractionResult:
     
-        FFMPEG_PATH = shutil.which("ffmpeg")
+        ffmpeg_path = shutil.which("ffmpeg")
 
-        if FFMPEG_PATH is None:
-            FFMPEG_PATH = r"C:\Users\AG\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-8.1.2-full_build\bin\ffmpeg.exe"
+        if ffmpeg_path is None:
+            raise FileNotFoundError(
+                "FFmpeg is not installed or not available in PATH."
+        )
 
-        os.environ["PATH"] += os.pathsep + os.path.dirname(FFMPEG_PATH)
-
-        subprocess.run([FFMPEG_PATH, "-version"])
+        subprocess.run(
+            [ffmpeg_path, "-version"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=True
+        )
 
         transcript = self.model.transcribe(file_path)["text"].strip()
 
         metadata = AudioMetadataExtractor.extract(file_path)
 
         statistics = StatisticsGenerator.generate(transcript)
+
 
         return ExtractionResult(
             file_name=file_path,

@@ -4,8 +4,8 @@ from docx import Document
 
 from extractors.base_extractor import BaseExtractor
 from models import ExtractionResult
-from models.metadata import Metadata
 from utils.statistics import StatisticsGenerator
+from utils.metadata import MetadataExtractor
 
 
 class DOCXExtractor(BaseExtractor):
@@ -26,14 +26,7 @@ class DOCXExtractor(BaseExtractor):
 
         properties = document.core_properties
 
-        metadata = Metadata(
-            author=properties.author or "",
-            title=properties.title or "",
-            subject=properties.subject or "",
-            creator="Microsoft Word",
-            page_count=0,  # DOCX doesn't directly expose page count
-            file_size=Path(file_path).stat().st_size,
-        )
+        metadata = MetadataExtractor.extract(file_path)
 
         statistics = StatisticsGenerator.generate(extracted_text)
 
