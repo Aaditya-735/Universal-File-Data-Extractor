@@ -9,7 +9,6 @@ from utils.image_metadata import ImageMetadataExtractor
 from utils.statistics import StatisticsGenerator
 
 
-text = pytesseract.image_to_string(image)
 
 class ImageExtractor(BaseExtractor):
 
