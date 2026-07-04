@@ -1,2 +1,2 @@
 ffmpeg
-pytesseract
+tesseract-ocr

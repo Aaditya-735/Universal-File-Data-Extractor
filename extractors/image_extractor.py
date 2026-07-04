@@ -9,10 +9,7 @@ from utils.image_metadata import ImageMetadataExtractor
 from utils.statistics import StatisticsGenerator
 
 
-pytesseract.pytesseract.tesseract_cmd = (
-    r"C:\Users\AG\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"
-)
-
+text = pytesseract.image_to_string(image)
 
 class ImageExtractor(BaseExtractor):
 
