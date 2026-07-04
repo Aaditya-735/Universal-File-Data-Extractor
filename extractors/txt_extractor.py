@@ -1,5 +1,5 @@
 from extractors.base_extractor import BaseExtractor
-from models import ExtractionResult
+from models.extraction_result import ExtractionResult
 from utils.metadata import MetadataExtractor
 from utils.statistics import StatisticsGenerator
 from pathlib import Path

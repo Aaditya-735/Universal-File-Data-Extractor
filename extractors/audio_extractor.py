@@ -4,7 +4,7 @@ import shutil
 import subprocess
 
 from extractors.base_extractor import BaseExtractor
-from models import ExtractionResult
+from models.extraction_result import ExtractionResult
 from utils.audio_metadata import AudioMetadataExtractor
 from utils.statistics import StatisticsGenerator
 

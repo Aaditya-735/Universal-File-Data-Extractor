@@ -1,4 +1,4 @@
-from models import Statistics
+from models.statistics import Statistics
 
 
 class StatisticsGenerator:

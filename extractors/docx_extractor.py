@@ -3,7 +3,7 @@ from pathlib import Path
 from docx import Document
 
 from extractors.base_extractor import BaseExtractor
-from models import ExtractionResult
+from models.extraction_result import ExtractionResult
 from utils.statistics import StatisticsGenerator
 from utils.metadata import MetadataExtractor
 

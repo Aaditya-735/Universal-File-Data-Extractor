@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 
 from extractors.base_extractor import BaseExtractor
-from models import ExtractionResult
+from models.extraction_result import ExtractionResult
 from utils.statistics import StatisticsGenerator
 
 
