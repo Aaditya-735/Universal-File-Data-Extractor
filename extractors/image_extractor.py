@@ -14,7 +14,7 @@ class ImageExtractor(BaseExtractor):
         self.reader = easyocr.Reader(
             ['en'],
             gpu=False,
-            model_storage_directory="models",
+            model_storage_directory="model",
             download_enabled=False
         )
 
