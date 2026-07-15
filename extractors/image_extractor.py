@@ -13,7 +13,9 @@ class ImageExtractor(BaseExtractor):
     def __init__(self):
         self.reader = easyocr.Reader(
             ['en'],
-            gpu=False
+            gpu=False,
+            model_storage_directory="models",
+            download_enabled=False
         )
 
     # --------------------------------------------------------
