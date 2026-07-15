@@ -14,7 +14,7 @@ class ImageExtractor(BaseExtractor):
         self.reader = easyocr.Reader(
             ['en'],
             gpu=False,
-            model_storage_directory="model",
+            model_storage_directory="models",
             download_enabled=False
         )
 
@@ -29,8 +29,8 @@ class ImageExtractor(BaseExtractor):
         gray = cv2.resize(
             gray,
             None,
-            fx=2,
-            fy=2,
+            fx=1.2,
+            fy=1.2,
             interpolation=cv2.INTER_CUBIC
         )
 
@@ -180,6 +180,19 @@ class ImageExtractor(BaseExtractor):
     def extract(self, file_path: str) -> ExtractionResult:
 
         image = cv2.imread(file_path)
+        height, width = image.shape[:2]
+
+        MAX_DIM = 1800
+
+        if max(height, width) > MAX_DIM:
+            scale = MAX_DIM / max(height, width)
+            image = cv2.resize(
+                image,
+                None,
+                fx=scale,
+                fy=scale,
+                interpolation=cv2.INTER_AREA
+            )
 
         if image is None:
             raise ValueError(f"Unable to read image: {file_path}")
